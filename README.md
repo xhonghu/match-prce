@@ -70,7 +70,7 @@ Train match on Visual Genome on a single node with 2 GPUs (2 images per GPU):
 python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env main.py
 ```
 
-#### b)Step 2 (Train predicate classifier)
+### b)Step 2 (Train predicate classifier)
 ```
 python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env rel_train.py --ann_path path_to_sample
  
