@@ -16,7 +16,7 @@ If you want to **train/evaluate** match on Visual Genome, you need a little more
 
 a) Scipy (we used 1.5.2) and pycocotools are required. 
 
-b) Follow [README](https://github.com/yrcong/match/blob/main/data/README.md) in the data directory to prepare the datasets.
+b) Follow [README](https://github.com/xhonghu/match-prce/blob/master/data/README.md) in the data directory to prepare the datasets.
 
 c) Some widely-used evaluation code (**IoU**) need to be compiled... We will replace it with Pytorch code.
 ```
