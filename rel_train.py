@@ -26,7 +26,7 @@ def get_args_parser():
 
     # dataset parameters
     parser.add_argument('--dataset', default='vg')
-    parser.add_argument('--ann_path', default='./data/vg/vg_modify_5/', type=str)
+    parser.add_argument('--ann_path', default='./data/vg/vg_init/', type=str)
     parser.add_argument('--img_folder', default='./data/vg/images/', type=str)
     parser.add_argument('--output_dir', default='./exper/tail',
                         help='path where to save, empty for no saving')
