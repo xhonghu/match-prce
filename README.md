@@ -1,5 +1,4 @@
-## For Inference
-:smile: It is super easy to configure the environment.
+## Prerequisites
 ```
 # create a conda environment 
 conda create -n match python=3.7
@@ -58,38 +57,43 @@ match-prce
 ├── rel_engine.py
 ├── rel_matcher.py
 ├── rel_test.py
-├── rel_train.py     
-... 
+├── rel_train.py      
 ```
 
 # 2. Usage
 
 ## Training
-a) Train match on Visual Genome on a single node with 2 GPUs (2 images per GPU):
-```
-# Train the match model
-nohup python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env main.py &
+Train match on Visual Genome on a single node with 2 GPUs (2 images per GPU):
 
-# Train predicate classifier
-nohup python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env rel_train.py --ann_path path_to_sample &
+### a)Step 1 (Train the match model)
+```
+python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env main.py
+```
+
+#### b)Step 2 (Train predicate classifier)
+```
+python -m torch.distributed.launch --nproc_per_node=2 --master_port 29501 --use_env rel_train.py --ann_path path_to_sample
  
 ```
 
 
 ## Evaluation
-a) Evaluate the pretrained on Visual Genome with a single GPU (1 image per GPU):
+Evaluate the pretrained on Visual Genome with a single GPU (1 image per GPU):
+
+### The first step of the test is to match the object detection of the subject and object
 ```
-# The first step of the test is to match the object detection of the subject and object
-
 python main.py --eval --batch_size 1 --resume path_to_Match.pth
+```
 
-# Test the performance of each predicate classifier
+### Test the performance of each predicate classifier
 
+```
 python rel_train.py --eval --batch_size 1 --resume path_to_classifier.pth
+```
 
-#Test the performance of your integration model
+### Test the performance of your integration model
 
-
+```
 python rel_test.py
 ```
 
